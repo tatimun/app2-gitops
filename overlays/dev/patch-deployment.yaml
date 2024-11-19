@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.19.6 # Puedes especificar una versión diferente para dev
