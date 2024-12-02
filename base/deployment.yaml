@@ -14,18 +14,17 @@ spec:
       labels:
         app: homebanking
     spec:
+      serviceAccountName: nginx-sa # Usa la nueva ServiceAccount
       containers:
       - name: nginx
         image: nginx:latest
         ports:
         - containerPort: 80
         securityContext:
-          runAsUser: 0 # Ejecuta como root para evitar problemas de permisos
-          runAsGroup: 0
-          allowPrivilegeEscalation: true
+          runAsUser: 0
         volumeMounts:
         - name: nginx-cache
-          mountPath: /var/cache/nginx # Monta un volumen para evitar errores de escritura
+          mountPath: /var/cache/nginx
       volumes:
       - name: nginx-cache
-        emptyDir: {} # Volumen temporal para solucionar errores de escritura
+        emptyDir: {}
