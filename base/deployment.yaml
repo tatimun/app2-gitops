@@ -19,3 +19,13 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+        securityContext:
+          runAsUser: 0 # Ejecuta como root para evitar problemas de permisos
+          runAsGroup: 0
+          allowPrivilegeEscalation: true
+        volumeMounts:
+        - name: nginx-cache
+          mountPath: /var/cache/nginx # Monta un volumen para evitar errores de escritura
+      volumes:
+      - name: nginx-cache
+        emptyDir: {} # Volumen temporal para solucionar errores de escritura
