@@ -1,33 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1
+  name: homebanking
   labels:
-    app: app1
+    app: homebanking
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app1
+      app: homebanking
   template:
     metadata:
       labels:
-        app: app1
+        app: homebanking
     spec:
       containers:
-        - name: nginx
-          image: nginx:latest
-          ports:
-            - containerPort: 80
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 15
-            periodSeconds: 20
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
